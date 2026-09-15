@@ -23,6 +23,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Impact website verification */}
+        <meta
+          name="impact-site-verification"
+          content="9c6e8dd3-b63f-4519-98c6-bea0a47aa047"
+        />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
