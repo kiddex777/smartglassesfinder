@@ -37,18 +37,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
 
         {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-E1EVP3Q8KG"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-E1EVP3Q8KG');
-          `}
-        </Script>
+        {/* Google Analytics */}
+<Script
+  src="https://www.googletagmanager.com/gtag/js?id=G-E1EVP3Q8KG"
+  strategy="beforeInteractive"
+/>
+<Script id="google-analytics" strategy="beforeInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-E1EVP3Q8KG');
+  `}
+</Script>
       </body>
     </html>
   );
