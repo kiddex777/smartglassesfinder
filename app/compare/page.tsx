@@ -418,8 +418,7 @@ const overallWinner =
         ? secondProduct
         : null;
 
-  const winningScore = Math.max(firstValue, secondValue);
-
+ const winningScore = Math.max(Number(firstValue), Number(secondValue));
   return (
     <div
       key={category}

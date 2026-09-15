@@ -18,7 +18,7 @@ currency: "USD";
   priceUpdated?: string;
 
   // Editorial
-  rating: 9,
+  rating: number | null;
   bestFor: string;
   description: string;
 
