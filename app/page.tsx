@@ -17,7 +17,7 @@ export default function Home() {
             <a href="/compare" className="hover:text-blue-600">
               Compare
             </a>
-            <a href="/best" className="hover:text-blue-600">
+            <a href="/best/smart-glasses" className="hover:text-blue-600">
               Best
             </a>
             <a href="/reviews" className="hover:text-blue-600">
