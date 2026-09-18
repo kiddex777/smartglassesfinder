@@ -15,7 +15,7 @@ const comparisons = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages: MetadataRoute.Sitemap = [
+   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       changeFrequency: "weekly",
@@ -46,8 +46,39 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
-  ];
 
+    // Best smart glasses pages
+    {
+      url: `${baseUrl}/best/smart-glasses`,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/best/ai-glasses`,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/best/ar-glasses`,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/best/smart-glasses-under-300`,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/best/smart-glasses-for-gaming`,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/best/smart-glasses-for-work`,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+  ];
   const productPages: MetadataRoute.Sitemap = products.map((product) => ({
     url: `${baseUrl}/reviews/${product.slug}`,
     changeFrequency: "monthly",
