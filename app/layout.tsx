@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import AnalyticsEvents from "./components/AnalyticsEvents";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +20,8 @@ export const metadata: Metadata = {
     "Compare AI, AR, and smart glasses by price, camera, audio, display, battery life, comfort, and value. Find the right smart glasses for your needs.",
 };
 
+
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -35,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
       <body className="min-h-full flex flex-col">
         {children}
+        <AnalyticsEvents />
 
         {/* Google Analytics */}
         {/* Google Analytics */}
