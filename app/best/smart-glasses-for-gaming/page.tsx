@@ -14,7 +14,7 @@ export const metadata = {
     description:
       "Compare display-focused smart glasses for gaming, handheld consoles, PC gaming, screen size, refresh rate and comfort.",
     url: "https://www.smartglassesfinder.com/best/smart-glasses-for-gaming",
-    siteName: "Smart Glasses Finder",
+    siteName: "SmartGlassesFinder",
     type: "article",
   },
 };

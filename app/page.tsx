@@ -159,6 +159,130 @@ export default function Home() {
   </div>
 </section>
 
+{/* Best Guides */}
+<section className="border-y border-slate-200 bg-slate-50">
+  <div className="mx-auto max-w-7xl px-6 py-20">
+    <div className="mb-10">
+      <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
+        Buying Guides
+      </p>
+
+      <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+        Best Smart Glasses Guides
+      </h2>
+
+      <p className="mt-3 max-w-2xl text-slate-600">
+        Looking for the right pair? Explore our buying guides to compare the
+        best smart glasses for different needs, budgets, and use cases.
+      </p>
+    </div>
+
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <a
+        href="/best/smart-glasses"
+        className="group rounded-2xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+      >
+        <div className="mb-5 text-4xl">🏆</div>
+        <h3 className="text-xl font-bold group-hover:text-blue-600">
+          Best Smart Glasses
+        </h3>
+        <p className="mt-3 leading-7 text-slate-600">
+          Compare the top smart glasses across AI, cameras, audio, displays,
+          battery life, comfort, and value.
+        </p>
+        <span className="mt-5 block font-semibold text-blue-600">
+          Explore guide →
+        </span>
+      </a>
+
+      <a
+        href="/best/ai-glasses"
+        className="group rounded-2xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+      >
+        <div className="mb-5 text-4xl">🤖</div>
+        <h3 className="text-xl font-bold group-hover:text-blue-600">
+          Best AI Glasses
+        </h3>
+        <p className="mt-3 leading-7 text-slate-600">
+          Find AI-powered glasses with cameras, voice assistants, open-ear
+          audio, and hands-free features.
+        </p>
+        <span className="mt-5 block font-semibold text-blue-600">
+          Explore guide →
+        </span>
+      </a>
+
+      <a
+        href="/best/ar-glasses"
+        className="group rounded-2xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+      >
+        <div className="mb-5 text-4xl">🥽</div>
+        <h3 className="text-xl font-bold group-hover:text-blue-600">
+          Best AR Glasses
+        </h3>
+        <p className="mt-3 leading-7 text-slate-600">
+          Explore display-focused glasses for gaming, movies, productivity,
+          and immersive visual experiences.
+        </p>
+        <span className="mt-5 block font-semibold text-blue-600">
+          Explore guide →
+        </span>
+      </a>
+
+      <a
+        href="/best/smart-glasses-under-300"
+        className="group rounded-2xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+      >
+        <div className="mb-5 text-4xl">💰</div>
+        <h3 className="text-xl font-bold group-hover:text-blue-600">
+          Smart Glasses Under $300
+        </h3>
+        <p className="mt-3 leading-7 text-slate-600">
+          See which smart glasses deliver the most useful features while
+          staying under a $300 budget.
+        </p>
+        <span className="mt-5 block font-semibold text-blue-600">
+          Explore guide →
+        </span>
+      </a>
+
+      <a
+        href="/best/smart-glasses-for-gaming"
+        className="group rounded-2xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+      >
+        <div className="mb-5 text-4xl">🎮</div>
+        <h3 className="text-xl font-bold group-hover:text-blue-600">
+          Best Smart Glasses for Gaming
+        </h3>
+        <p className="mt-3 leading-7 text-slate-600">
+          Compare display glasses for gaming, including resolution, refresh
+          rate, field of view, and comfort.
+        </p>
+        <span className="mt-5 block font-semibold text-blue-600">
+          Explore guide →
+        </span>
+      </a>
+
+      <a
+        href="/best/smart-glasses-for-work"
+        className="group rounded-2xl border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+      >
+        <div className="mb-5 text-4xl">💼</div>
+        <h3 className="text-xl font-bold group-hover:text-blue-600">
+          Best Smart Glasses for Work
+        </h3>
+        <p className="mt-3 leading-7 text-slate-600">
+          Find glasses suited to productivity, including display quality,
+          comfort, battery life, audio, and AI features.
+        </p>
+        <span className="mt-5 block font-semibold text-blue-600">
+          Explore guide →
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
 
       {/* Categories */}
       <section className="mx-auto max-w-7xl px-6 py-20">
@@ -290,23 +414,98 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-slate-200">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-          <p>© 2026 SmartGlassesFinder. All rights reserved.</p>
+<footer className="border-t border-slate-200 bg-slate-50">
+  <div className="mx-auto max-w-7xl px-6 py-12">
+    <div className="grid gap-10 md:grid-cols-4">
+      <div>
+        <a href="/" className="text-xl font-bold tracking-tight">
+          SmartGlasses<span className="text-blue-600">Finder</span>
+        </a>
 
-          <div className="flex gap-6">
-            <a href="/about" className="hover:text-slate-900">
-              About
-            </a>
-            <a href="/contact" className="hover:text-slate-900">
-              Contact
-            </a>
-            <a href="/privacy" className="hover:text-slate-900">
-              Privacy
-            </a>
-          </div>
+        <p className="mt-4 max-w-xs text-sm leading-6 text-slate-600">
+          Compare smart glasses, explore detailed reviews, and find the right
+          pair for your needs.
+        </p>
+      </div>
+
+      <div>
+        <h3 className="font-semibold text-slate-900">Explore</h3>
+
+        <div className="mt-4 flex flex-col gap-3 text-sm text-slate-600">
+          <a href="/smart-glasses" className="hover:text-blue-600">
+            Smart Glasses
+          </a>
+          <a href="/ai-glasses" className="hover:text-blue-600">
+            AI Glasses
+          </a>
+          <a href="/ar-glasses" className="hover:text-blue-600">
+            AR & Display Glasses
+          </a>
+          <a href="/compare" className="hover:text-blue-600">
+            Compare Glasses
+          </a>
         </div>
-      </footer>
+      </div>
+
+      <div>
+        <h3 className="font-semibold text-slate-900">Buying Guides</h3>
+
+        <div className="mt-4 flex flex-col gap-3 text-sm text-slate-600">
+          <a href="/best/smart-glasses" className="hover:text-blue-600">
+            Best Smart Glasses
+          </a>
+          <a href="/best/ai-glasses" className="hover:text-blue-600">
+            Best AI Glasses
+          </a>
+          <a href="/best/ar-glasses" className="hover:text-blue-600">
+            Best AR Glasses
+          </a>
+          <a
+            href="/best/smart-glasses-under-300"
+            className="hover:text-blue-600"
+          >
+            Smart Glasses Under $300
+          </a>
+          <a href="/best/smart-glasses-for-gaming" className="hover:text-blue-600">
+            Smart Glasses for Gaming
+          </a>
+          <a href="/best/smart-glasses-for-work" className="hover:text-blue-600">
+            Smart Glasses for Work
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="font-semibold text-slate-900">SmartGlassesFinder</h3>
+
+        <div className="mt-4 flex flex-col gap-3 text-sm text-slate-600">
+          <a href="/find" className="hover:text-blue-600">
+            Find Your Glasses
+          </a>
+          <a href="/reviews" className="hover:text-blue-600">
+            Reviews
+          </a>
+          <a href="/guides" className="hover:text-blue-600">
+            Guides
+          </a>
+          <a href="/about" className="hover:text-blue-600">
+            About
+          </a>
+          <a href="/contact" className="hover:text-blue-600">
+            Contact
+          </a>
+          <a href="/privacy" className="hover:text-blue-600">
+            Privacy
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div className="mt-10 border-t border-slate-200 pt-6 text-sm text-slate-500">
+      <p>© 2026 SmartGlassesFinder. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
     </main>
   );
 }

@@ -13,7 +13,7 @@ export const metadata = {
     description:
       "Compare the best AI and AR smart glasses for cameras, audio, displays, battery life, comfort and value.",
     url: "https://www.smartglassesfinder.com/best/smart-glasses",
-    siteName: "Smart Glasses Finder",
+   siteName: "SmartGlassesFinder",
     type: "article",
   },
 };
@@ -58,6 +58,93 @@ export default function BestSmartGlassesPage() {
               Compare Smart Glasses
             </Link>
           </div>
+        </div>
+      </section>
+
+
+      {/* Best Guides */}
+      <section className="mx-auto max-w-6xl px-6 py-14">
+        <div className="max-w-3xl">
+          <h2 className="text-3xl font-bold">
+            Explore Our Best Smart Glasses Guides
+          </h2>
+
+          <p className="mt-4 leading-7 text-gray-600">
+            Looking for smart glasses for a specific purpose or budget? Explore
+            our specialized guides to find the right options for your needs.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Link
+            href="/best/ai-glasses"
+            className="rounded-2xl border border-gray-200 bg-white p-6 transition hover:shadow-md"
+          >
+            <h3 className="text-xl font-bold">Best AI Glasses</h3>
+            <p className="mt-3 leading-6 text-gray-600">
+              Explore AI-powered glasses with cameras, voice assistants,
+              open-ear audio and hands-free features.
+            </p>
+            <span className="mt-4 inline-block font-semibold text-blue-600">
+              Explore AI Glasses →
+            </span>
+          </Link>
+
+          <Link
+            href="/best/ar-glasses"
+            className="rounded-2xl border border-gray-200 bg-white p-6 transition hover:shadow-md"
+          >
+            <h3 className="text-xl font-bold">Best AR Glasses</h3>
+            <p className="mt-3 leading-6 text-gray-600">
+              Compare display-focused glasses for gaming, movies,
+              entertainment and productivity.
+            </p>
+            <span className="mt-4 inline-block font-semibold text-blue-600">
+              Explore AR Glasses →
+            </span>
+          </Link>
+
+          <Link
+            href="/best/smart-glasses-under-300"
+            className="rounded-2xl border border-gray-200 bg-white p-6 transition hover:shadow-md"
+          >
+            <h3 className="text-xl font-bold">Best Smart Glasses Under $300</h3>
+            <p className="mt-3 leading-6 text-gray-600">
+              Find smart glasses that offer useful features while staying
+              within a $300 budget.
+            </p>
+            <span className="mt-4 inline-block font-semibold text-blue-600">
+              Explore Under $300 →
+            </span>
+          </Link>
+
+          <Link
+            href="/best/smart-glasses-for-gaming"
+            className="rounded-2xl border border-gray-200 bg-white p-6 transition hover:shadow-md"
+          >
+            <h3 className="text-xl font-bold">Best Smart Glasses for Gaming</h3>
+            <p className="mt-3 leading-6 text-gray-600">
+              Compare display glasses for gaming, large virtual screens,
+              high refresh rates and immersive entertainment.
+            </p>
+            <span className="mt-4 inline-block font-semibold text-blue-600">
+              Explore Gaming Glasses →
+            </span>
+          </Link>
+
+          <Link
+            href="/best/smart-glasses-for-work"
+            className="rounded-2xl border border-gray-200 bg-white p-6 transition hover:shadow-md"
+          >
+            <h3 className="text-xl font-bold">Best Smart Glasses for Work</h3>
+            <p className="mt-3 leading-6 text-gray-600">
+              Discover glasses suited to productivity, virtual displays,
+              communication and extended use.
+            </p>
+            <span className="mt-4 inline-block font-semibold text-blue-600">
+              Explore Work Glasses →
+            </span>
+          </Link>
         </div>
       </section>
 

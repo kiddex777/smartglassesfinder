@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { products } from "../../data/products";
+import Link from "next/link";
 
 type ProductPageProps = {
   params: Promise<{
@@ -24,9 +25,29 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${product.name} Review: Is It Worth Buying? | Smart Glasses Finder`,
-    description: `Read our ${product.name} review, including price, specifications, features, pros, cons, and who these smart glasses are best for.`,
-  };
+  title: `${product.name} Review: Is It Worth Buying? | Smart Glasses Finder`,
+  description: `Read our ${product.name} review, including price, specifications, features, pros, cons, and who these smart glasses are best for.`,
+
+  alternates: {
+    canonical: `https://www.smartglassesfinder.com/reviews/${product.slug}`,
+  },
+
+  openGraph: {
+    title: `${product.name} Review | Smart Glasses Finder`,
+    description: `Explore the ${product.name} review, including features, specifications, pros, cons, price, and who it is best for.`,
+    url: `https://www.smartglassesfinder.com/reviews/${product.slug}`,
+    siteName: "SmartGlassesFinder",
+    type: "article",
+    images: product.image
+      ? [
+          {
+            url: `https://www.smartglassesfinder.com${product.image}`,
+            alt: product.name,
+          },
+        ]
+      : undefined,
+  },
+};
 }
 export default async function ProductPage({
   params,
@@ -38,6 +59,64 @@ export default async function ProductPage({
   if (!product) {
     notFound();
   }
+
+   
+ const reviewSummary =
+  product.slug === "ray-ban-meta-gen-2"
+    ? "The Ray-Ban Meta Gen 2 is built primarily for people who want everyday smart glasses that look and feel like normal eyewear. Its biggest strengths are the combination of Meta AI, hands-free photography and video, open-ear audio and a familiar Ray-Ban design. The lack of a built-in display means it is not an AR glasses replacement, but for calls, music, quick photos, AI assistance and hands-free capture, it is designed to fit naturally into everyday use."
+    : product.slug === "oakley-meta-vanguard"
+      ? "The Oakley Meta Vanguard is a sport-focused pair of AI smart glasses designed for people who want hands-free technology during training, outdoor activities and active everyday use. It combines a 12 MP camera, open-ear audio, Meta AI and fitness integrations with a rugged IP67-rated design. Unlike display-based AR glasses, the Vanguard focuses on camera capture, audio and AI rather than putting visual information in front of your eyes."
+      : product.description;
+  const relatedComparisons = [
+  {
+    slug: "ray-ban-meta-gen-2-vs-oakley-meta-vanguard",
+    title: "Ray-Ban Meta Gen 2 vs Oakley Meta Vanguard",
+    description:
+      "Compare AI features, cameras, audio, battery life and everyday use.",
+  },
+  {
+    slug: "ray-ban-meta-gen-2-vs-oakley-meta-hstn",
+    title: "Ray-Ban Meta Gen 2 vs Oakley Meta HSTN",
+    description:
+      "Compare AI, photography, calls, music and everyday wear.",
+  },
+  {
+    slug: "ray-ban-meta-gen-2-vs-solos-airgo-v2",
+    title: "Ray-Ban Meta Gen 2 vs Solos AirGo V2",
+    description:
+      "Compare cameras, AI, audio, battery life, comfort and value.",
+  },
+  {
+    slug: "xreal-one-pro-vs-xreal-one",
+    title: "XREAL One Pro vs XREAL One",
+    description:
+      "Compare display quality, field of view, refresh rate, comfort and price.",
+  },
+  {
+    slug: "xreal-one-pro-vs-viture-pro-2",
+    title: "XREAL One Pro vs VITURE Pro 2",
+    description:
+      "Compare display quality, audio, comfort, refresh rate and value.",
+  },
+  {
+    slug: "xreal-one-vs-rokid-max-2",
+    title: "XREAL One vs Rokid Max 2",
+    description:
+      "Compare display specifications, comfort, audio, compatibility and value.",
+  },
+  {
+    slug: "even-realities-g2-vs-ray-ban-meta-gen-2",
+    title: "Even Realities G2 vs Ray-Ban Meta Gen 2",
+    description:
+      "Compare display, AI, camera, audio, battery and everyday use.",
+  },
+  {
+    slug: "viture-pro-2-vs-rokid-max-2",
+    title: "VITURE Pro 2 vs Rokid Max 2",
+    description:
+      "Compare screen quality, comfort, audio, compatibility and price.",
+  },
+];
 
 const productSchema = {
   "@context": "https://schema.org",
@@ -63,10 +142,33 @@ const productSchema = {
 
   return (
     <main className="min-h-screen bg-white text-slate-900">
-       <script
+   <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{
-    __html: JSON.stringify(productSchema),
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.smartglassesfinder.com/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Reviews",
+          item: "https://www.smartglassesfinder.com/reviews",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: product.name,
+          item: `https://www.smartglassesfinder.com/reviews/${product.slug}`,
+        },
+      ],
+    }),
   }}
 />
 
@@ -120,21 +222,25 @@ const productSchema = {
           {product.description}
         </p>
 
-        {/* Price and Rating */}
-        <div className="mt-6 flex flex-wrap items-center gap-4">
-          {product.price !== null && (
-            <span className="text-3xl font-bold text-slate-900">
-              ${product.price} {product.currency}
-            </span>
-          )}
+ {/* Price and Rating */}
+<div className="mt-6 flex flex-wrap items-center gap-4">
+  {product.price !== null && (
+    <span className="text-3xl font-bold text-slate-900">
+      ${product.price} {product.currency}
+    </span>
+  )}
 
-          {product.rating !== null && (
-            <span className="rounded-full bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700">
-              {product.rating}/10
-            </span>
-          )}
-        </div>
-
+  {product.rating !== null && (
+    <div>
+      <span className="inline-block rounded-full bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700">
+        {product.rating}/10
+      </span>
+      <p className="mt-1 text-xs text-slate-500">
+        Smart Glasses Finder editorial score
+      </p>
+    </div>
+  )}
+</div>
         <div className="mt-8 flex flex-wrap gap-3">
           <span className="rounded-full bg-white px-4 py-2 text-sm font-medium shadow-sm">
             {product.brand}
@@ -295,6 +401,49 @@ const productSchema = {
         </div>
       </section>
 
+{/* Pros & Cons */}
+<section className="mx-auto max-w-7xl px-6 py-16">
+  <div className="grid gap-8 md:grid-cols-2">
+    <div className="rounded-3xl border border-slate-200 bg-white p-8">
+      <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
+        Strengths
+      </p>
+
+      <h2 className="mt-3 text-2xl font-bold">
+        What we like about the {product.name}
+      </h2>
+
+      <ul className="mt-6 space-y-4">
+        {product.pros.map((pro) => (
+          <li key={pro} className="flex gap-3 text-slate-600">
+            <span className="font-bold text-green-600">✓</span>
+            <span>{pro}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div className="rounded-3xl border border-slate-200 bg-white p-8">
+      <p className="text-sm font-semibold uppercase tracking-widest text-slate-500">
+        Limitations
+      </p>
+
+      <h2 className="mt-3 text-2xl font-bold">
+        What to consider before buying
+      </h2>
+
+      <ul className="mt-6 space-y-4">
+        {product.cons.map((con) => (
+          <li key={con} className="flex gap-3 text-slate-600">
+            <span className="font-bold text-red-500">×</span>
+            <span>{con}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
 {/* Review */}
 <section className="bg-slate-50">
   <div className="mx-auto max-w-4xl px-6 py-16">
@@ -303,75 +452,85 @@ const productSchema = {
     </p>
 
     <h2 className="mt-3 text-3xl font-bold">
-      {product.name} review
+      Ray-Ban Meta Gen 2 review
     </h2>
 
     <div className="mt-8 space-y-6 text-lg leading-8 text-slate-600">
       <p>
-        The {product.name} are designed for{" "}
-        <strong className="text-slate-900">{product.bestFor}</strong>.
-        Their combination of {product.ai.toLowerCase()} and{" "}
-        {product.audio.toLowerCase()} makes them an interesting option
-        for people looking to add smart features without carrying
-        another traditional device.
+        The Ray-Ban Meta Gen 2 is designed primarily for people who want
+        smart features without wearing glasses that look like traditional
+        AR hardware. The familiar Ray-Ban styling is combined with Meta AI,
+        a built-in camera, open-ear audio and hands-free controls, making the
+        glasses particularly suited to everyday use.
       </p>
 
       <p>
-        One of the biggest things to consider is the hardware itself.
-        The glasses include {product.camera.toLowerCase()} and{" "}
-        {product.display.toLowerCase()}. Battery life is rated at{" "}
-        {product.battery.toLowerCase()}, while the glasses weigh{" "}
-        {product.weight.toLowerCase()}.
+        One of the biggest upgrades with Gen 2 is its camera and video
+        capability. The glasses feature a 12 MP camera capable of capturing
+        photos at 3024 × 4032 and recording video at up to 3K resolution.
+        This makes them useful for quickly capturing photos and video from
+        your point of view without reaching for your phone.
       </p>
 
       <p>
-        Compatibility is another important consideration. The{" "}
-        {product.name} support {product.compatibility.toLowerCase()},
-        making them suitable for users who already have compatible
-        devices in their everyday setup.
+        Meta AI is another major part of the experience. Instead of simply
+        functioning as Bluetooth audio glasses, the Ray-Ban Meta Gen 2 can
+        provide hands-free AI assistance through voice interaction. This can
+        make everyday tasks such as asking questions, getting information,
+        and interacting with the glasses more convenient.
       </p>
 
       <p>
-        Overall, the {product.name} are worth considering if their
-        particular combination of features matches what you're looking
-        for. Before buying, compare them with other smart glasses to
-        make sure you're getting the features that matter most to you.
+        Audio is handled through open-ear speakers, allowing you to listen to
+        music, podcasts and calls without traditional earbuds. The glasses
+        also use a multi-microphone system for voice interaction and calls.
+        This combination makes them more practical as an everyday wearable
+        rather than a device intended only for occasional use.
+      </p>
+
+      <p>
+        Battery life is rated for up to 8 hours of moderate use, although
+        actual battery life will depend on how frequently you use features
+        such as the camera, AI and audio. The glasses charge through their
+        included charging case, which also makes it easier to recharge them
+        while away from a power outlet.
+      </p>
+
+      <p>
+        The most important limitation is the lack of a built-in display.
+        The Ray-Ban Meta Gen 2 are not AR glasses and cannot place a virtual
+        screen or visual information in front of your eyes. If your main goal
+        is gaming, watching movies on a large virtual display or creating a
+        portable monitor, display-focused glasses such as the XREAL One Pro
+        are designed for a different type of experience.
+      </p>
+
+      <div className="rounded-2xl border border-slate-200 bg-white p-6">
+        <h3 className="text-xl font-bold text-slate-900">
+          Who are the Ray-Ban Meta Gen 2 for?
+        </h3>
+
+        <p className="mt-3 text-base leading-7 text-slate-600">
+          The Ray-Ban Meta Gen 2 make the most sense for people who want
+          everyday smart glasses with a camera, open-ear audio, Meta AI and
+          hands-free controls. They are especially relevant for users who
+          want to capture moments without using their phone or who want
+          connected features in a familiar-looking pair of glasses.
+        </p>
+      </div>
+
+      <p>
+        Overall, the Ray-Ban Meta Gen 2 are best understood as AI-powered
+        everyday glasses rather than AR glasses. Their combination of
+        familiar eyewear design, camera, audio, AI and hands-free controls
+        makes them a very different product from display-based glasses.
+        Before buying, consider whether you want an everyday AI companion or
+        a virtual display, because that distinction will have a major impact
+        on which type of smart glasses is appropriate for you.
       </p>
     </div>
   </div>
 </section>
-
-      {/* Pros and Cons */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-8 md:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200 p-8">
-            <h2 className="text-2xl font-bold">What We Like</h2>
-
-            <ul className="mt-6 space-y-4">
-              {product.pros.map((pro) => (
-                <li key={pro} className="flex gap-3 text-slate-700">
-                  <span className="font-bold text-green-600">✓</span>
-                  <span>{pro}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 p-8">
-          <h2 className="text-2xl font-bold">What to Consider</h2>
-
-            <ul className="mt-6 space-y-4">
-              {product.cons.map((con) => (
-                <li key={con} className="flex gap-3 text-slate-700">
-                  <span className="font-bold text-orange-500">!</span>
-                  <span>{con}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
             {/* Best Alternatives */}
 <section className="mx-auto max-w-7xl px-6 py-16">
   <div className="mb-8">
@@ -454,6 +613,48 @@ const productSchema = {
 </section>
 
 
+    {/* Related Comparisons */}
+{relatedComparisons.filter((comparison) =>
+ comparison.slug.split("-vs-").includes(product.slug)
+).length > 0 && (
+  <section className="mx-auto max-w-7xl px-6 pb-16">
+    <h2 className="text-2xl font-bold">
+      Related Comparisons
+    </h2>
+
+    <p className="mt-2 text-slate-600">
+      Compare the {product.name} with other smart glasses to see how
+      the features, specifications and value differ.
+    </p>
+
+    <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {relatedComparisons
+        .filter((comparison) =>
+       comparison.slug.split("-vs-").includes(product.slug)
+        )
+        .map((comparison) => (
+          <Link
+            key={comparison.slug}
+            href={`/compare/${comparison.slug}`}
+            className="rounded-xl border border-slate-200 bg-white p-5 transition hover:-translate-y-1 hover:shadow-md"
+          >
+            <h3 className="font-semibold text-slate-900">
+              {comparison.title}
+            </h3>
+
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              {comparison.description}
+            </p>
+
+            <span className="mt-4 inline-block text-sm font-semibold text-blue-600">
+              Compare →
+            </span>
+          </Link>
+        ))}
+    </div>
+  </section>
+)}
+
 {/* Where to Buy */}
 <section className="mx-auto max-w-7xl px-6 py-16">
   <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm md:p-10">
@@ -497,7 +698,7 @@ const productSchema = {
   </div>
 </section>
 
-       {/* Frequently Asked Questions */}
+    {/* Frequently Asked Questions */}
 <section className="bg-slate-50">
   <div className="mx-auto max-w-4xl px-6 py-16">
     <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
@@ -505,79 +706,123 @@ const productSchema = {
     </p>
 
     <h2 className="mt-3 text-3xl font-bold">
-      {product.name} FAQ
+      Ray-Ban Meta Gen 2 FAQ
     </h2>
 
     <div className="mt-8 space-y-4">
       <details className="rounded-2xl border border-slate-200 bg-white p-6">
         <summary className="cursor-pointer font-semibold">
-          How much do the {product.name} cost?
+          How much do the Ray-Ban Meta Gen 2 cost?
         </summary>
 
         <p className="mt-4 leading-7 text-slate-600">
-          The listed price is{" "}
-          {product.price !== null
-            ? `$${product.price} ${product.currency}`
-            : "not currently listed"}.
-          Prices and availability can change, so check the current
-          retailer or manufacturer price before purchasing.
+          The listed price for the Ray-Ban Meta Gen 2 is $459 USD. Prices,
+          lens options and availability can change, so check the current
+          manufacturer or retailer price before purchasing.
         </p>
       </details>
 
       <details className="rounded-2xl border border-slate-200 bg-white p-6">
         <summary className="cursor-pointer font-semibold">
-          Who are the {product.name} best for?
+          Do the Ray-Ban Meta Gen 2 have a display?
         </summary>
 
         <p className="mt-4 leading-7 text-slate-600">
-          The {product.name} are particularly well suited for{" "}
-          {product.bestFor.toLowerCase()}.
+          No. The Ray-Ban Meta Gen 2 do not have a built-in display. They are
+          designed around Meta AI, a camera, open-ear audio and hands-free
+          controls rather than an augmented-reality screen.
         </p>
       </details>
 
       <details className="rounded-2xl border border-slate-200 bg-white p-6">
         <summary className="cursor-pointer font-semibold">
-          Do the {product.name} have a camera?
+          How good is the Ray-Ban Meta Gen 2 camera?
         </summary>
 
         <p className="mt-4 leading-7 text-slate-600">
-          {product.camera}
+          The glasses have a 12 MP camera capable of capturing photos at
+          3024 × 4032. They can also record video at up to 3K resolution,
+          making them useful for hands-free first-person photos and video.
         </p>
       </details>
 
       <details className="rounded-2xl border border-slate-200 bg-white p-6">
         <summary className="cursor-pointer font-semibold">
-          Do the {product.name} have a display?
+          How long does the Ray-Ban Meta Gen 2 battery last?
         </summary>
 
         <p className="mt-4 leading-7 text-slate-600">
-          {product.display}
+          Battery life is rated for up to 8 hours of moderate use. Actual
+          battery life can vary depending on how frequently you use the
+          camera, Meta AI, audio and other connected features.
         </p>
       </details>
 
       <details className="rounded-2xl border border-slate-200 bg-white p-6">
         <summary className="cursor-pointer font-semibold">
-          How long does the battery last?
+          Can Ray-Ban Meta Gen 2 record 3K video?
         </summary>
 
         <p className="mt-4 leading-7 text-slate-600">
-          {product.battery}
+          Yes. The Ray-Ban Meta Gen 2 support video recording at up to 3K
+          resolution, giving them higher-resolution video capture than
+          earlier-generation models.
         </p>
       </details>
 
       <details className="rounded-2xl border border-slate-200 bg-white p-6">
         <summary className="cursor-pointer font-semibold">
-          Are the {product.name} prescription compatible?
+          Are Ray-Ban Meta Gen 2 prescription compatible?
         </summary>
 
         <p className="mt-4 leading-7 text-slate-600">
-          {product.prescription}
+          Yes. Prescription options are available, although availability can
+          depend on the frame and lens configuration you choose.
+        </p>
+      </details>
+
+      <details className="rounded-2xl border border-slate-200 bg-white p-6">
+        <summary className="cursor-pointer font-semibold">
+          Are Ray-Ban Meta Gen 2 good for everyday use?
+        </summary>
+
+        <p className="mt-4 leading-7 text-slate-600">
+          They are designed as everyday smart glasses rather than dedicated
+          AR glasses. Their combination of familiar eyewear styling, Meta AI,
+          hands-free photography, open-ear audio and voice controls makes
+          them suited to everyday connected use.
+        </p>
+      </details>
+
+      <details className="rounded-2xl border border-slate-200 bg-white p-6">
+        <summary className="cursor-pointer font-semibold">
+          Are Ray-Ban Meta Gen 2 AR glasses?
+        </summary>
+
+        <p className="mt-4 leading-7 text-slate-600">
+          No. They do not have a built-in visual display, so they are not
+          AR glasses. If you specifically want a virtual screen for gaming,
+          movies or productivity, display-focused glasses are a different
+          category to consider.
+        </p>
+      </details>
+
+      <details className="rounded-2xl border border-slate-200 bg-white p-6">
+        <summary className="cursor-pointer font-semibold">
+          Are Ray-Ban Meta Gen 2 worth buying?
+        </summary>
+
+        <p className="mt-4 leading-7 text-slate-600">
+          That depends on what you want from smart glasses. They are designed
+          for users who value Meta AI, hands-free camera capture, open-ear
+          audio and familiar everyday eyewear. If your priority is a built-in
+          display for gaming or movies, an AR display model may be more
+          appropriate.
         </p>
       </details>
     </div>
   </div>
 </section>
-
 
       {/* Bottom CTA */}
       <section className="bg-slate-950 text-white">

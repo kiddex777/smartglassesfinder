@@ -13,7 +13,7 @@ export const metadata = {
     description:
       "Compare the best AR and display glasses for gaming, movies, productivity, virtual screens and everyday use.",
     url: "https://www.smartglassesfinder.com/best/ar-glasses",
-    siteName: "Smart Glasses Finder",
+  siteName: "SmartGlassesFinder",
     type: "article",
   },
 };

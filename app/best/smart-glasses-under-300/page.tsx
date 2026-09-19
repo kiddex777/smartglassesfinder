@@ -14,7 +14,7 @@ export const metadata = {
     description:
       "Compare smart glasses under $300 for AI, cameras, audio, displays, battery life, comfort and value.",
     url: "https://www.smartglassesfinder.com/best/smart-glasses-under-300",
-    siteName: "Smart Glasses Finder",
+    siteName: "SmartGlassesFinder",
     type: "article",
   },
 };

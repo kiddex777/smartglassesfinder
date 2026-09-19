@@ -277,7 +277,7 @@ description:
   displayType: "No built-in display",
   charging: "Charging case provides up to 48 hours of charging on the go",
   battery: "Up to 8 hours",
-  weight: "To be verified",
+ weight: "Not specified by manufacturer",
 
   prescription: "Prescription lenses available",
   compatibility: "iOS and Android",

@@ -15,11 +15,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.smartglassesfinder.com"),
+
   title: "SmartGlassesFinder | Compare the Best Smart Glasses",
+
   description:
     "Compare AI, AR, and smart glasses by price, camera, audio, display, battery life, comfort, and value. Find the right smart glasses for your needs.",
-};
 
+     alternates: {
+  canonical: "https://www.smartglassesfinder.com",
+},
+
+  openGraph: {
+    title: "SmartGlassesFinder | Compare the Best Smart Glasses",
+    description:
+      "Compare AI, AR, and smart glasses by price, camera, audio, display, battery life, comfort, and value.",
+    url: "https://www.smartglassesfinder.com",
+    siteName: "SmartGlassesFinder",
+    type: "website",
+  },
+};
 
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

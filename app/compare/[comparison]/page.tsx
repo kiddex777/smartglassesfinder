@@ -61,7 +61,7 @@ export async function generateMetadata({
       title,
       description,
       url: `/compare/${comparison}`,
-      siteName: "Smart Glasses Finder",
+      siteName: "SmartGlassesFinder",
       type: "article",
     },
   };

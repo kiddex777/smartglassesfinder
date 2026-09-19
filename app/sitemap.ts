@@ -26,6 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+{
+  url: `${baseUrl}/reviews`,
+  changeFrequency: "weekly",
+  priority: 0.8,
+},
+
     {
       url: `${baseUrl}/find`,
       changeFrequency: "monthly",
@@ -78,7 +84,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+
+// Site information pages
+{
+  url: `${baseUrl}/guides`,
+  changeFrequency: "weekly",
+  priority: 0.8,
+},
+{
+  url: `${baseUrl}/about`,
+  changeFrequency: "yearly",
+  priority: 0.5,
+},
+{
+  url: `${baseUrl}/contact`,
+  changeFrequency: "yearly",
+  priority: 0.5,
+},
+{
+  url: `${baseUrl}/privacy`,
+  changeFrequency: "yearly",
+  priority: 0.3,
+},
+
   ];
+
+   
+
   const productPages: MetadataRoute.Sitemap = products.map((product) => ({
     url: `${baseUrl}/reviews/${product.slug}`,
     changeFrequency: "monthly",

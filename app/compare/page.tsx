@@ -1,6 +1,24 @@
 import Link from "next/link";
 import { products } from "../data/products";
 import ProductSelectors from "./ProductSelectors";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Compare Smart Glasses | Smart Glasses Finder",
+  description:
+    "Compare smart glasses side by side by price, camera, AI, audio, display, battery life, comfort and value. Find the right smart glasses for your needs.",
+  alternates: {
+    canonical: "https://www.smartglassesfinder.com/compare",
+  },
+  openGraph: {
+    title: "Compare Smart Glasses | SmartGlassesFinder",
+    description:
+      "Compare smart glasses side by side by price, camera, AI, audio, display, battery life, comfort and value.",
+    url: "https://www.smartglassesfinder.com/compare",
+    siteName: "SmartGlassesFinder",
+    type: "website",
+  },
+};
 
 const popularComparisons = [
   {
@@ -74,15 +92,16 @@ export default async function ComparePage({
   const firstSlug = firstProduct.slug;
   const secondSlug = secondProduct.slug;
 
- const firstOverall = firstProduct.scores?.overall ?? 0;
-const secondOverall = secondProduct.scores?.overall ?? 0;
+  const firstOverall = firstProduct.scores?.overall ?? 0;
+  const secondOverall = secondProduct.scores?.overall ?? 0;
 
-const overallWinner =
-  firstOverall > secondOverall
-    ? firstProduct
-    : secondOverall > firstOverall
-      ? secondProduct
-      : null;
+  const overallWinner =
+    firstOverall > secondOverall
+      ? firstProduct
+      : secondOverall > firstOverall
+        ? secondProduct
+        : null;
+
   const comparisons = [
     [
       "Price",
@@ -105,8 +124,16 @@ const overallWinner =
     ["Display", firstProduct.display, secondProduct.display],
     ["Battery", firstProduct.battery, secondProduct.battery],
     ["Weight", firstProduct.weight, secondProduct.weight],
-    ["Prescription", firstProduct.prescription, secondProduct.prescription],
-    ["Compatibility", firstProduct.compatibility, secondProduct.compatibility],
+    [
+      "Prescription",
+      firstProduct.prescription,
+      secondProduct.prescription,
+    ],
+    [
+      "Compatibility",
+      firstProduct.compatibility,
+      secondProduct.compatibility,
+    ],
   ];
 
   const categoryScores = [
@@ -142,10 +169,10 @@ const overallWinner =
       {/* Product Selectors and Products */}
       <section className="mx-auto max-w-7xl px-6 py-16">
         <ProductSelectors
-  products={products}
-  firstSlug={firstSlug}
-  secondSlug={secondSlug}
-/>
+          products={products}
+          firstSlug={firstSlug}
+          secondSlug={secondSlug}
+        />
 
         {/* Products */}
         <div className="grid gap-6 md:grid-cols-2">
@@ -186,16 +213,20 @@ const overallWinner =
                 )}
               </div>
 
+              <p className="mt-1 text-xs text-slate-500">
+                Smart Glasses Finder editorial score
+              </p>
+
               <p className="mt-3 text-slate-600">
                 {firstProduct.description}
               </p>
 
-              <a
+              <Link
                 href={`/reviews/${firstProduct.slug}`}
                 className="mt-6 inline-block font-semibold text-blue-600 hover:text-blue-700"
               >
                 Read Review →
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -236,16 +267,20 @@ const overallWinner =
                 )}
               </div>
 
+              <p className="mt-1 text-xs text-slate-500">
+                Smart Glasses Finder editorial score
+              </p>
+
               <p className="mt-3 text-slate-600">
                 {secondProduct.description}
               </p>
 
-              <a
+              <Link
                 href={`/reviews/${secondProduct.slug}`}
                 className="mt-6 inline-block font-semibold text-blue-600 hover:text-blue-700"
               >
                 Read Review →
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -285,13 +320,11 @@ const overallWinner =
                 <span className="text-slate-600">{second}</span>
               </div>
             ))}
-
-          
           </div>
         </div>
       </section>
 
-             {/* Ratings Breakdown */}
+      {/* Ratings Breakdown */}
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="mb-8">
           <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
@@ -316,47 +349,47 @@ const overallWinner =
           </div>
 
           {categoryScores.map(([category, firstScore, secondScore]) => {
-  const firstIsHigher =
-    firstScore !== undefined &&
-    secondScore !== undefined &&
-    firstScore > secondScore;
+            const firstIsHigher =
+              firstScore !== undefined &&
+              secondScore !== undefined &&
+              firstScore > secondScore;
 
-  const secondIsHigher =
-    firstScore !== undefined &&
-    secondScore !== undefined &&
-    secondScore > firstScore;
+            const secondIsHigher =
+              firstScore !== undefined &&
+              secondScore !== undefined &&
+              secondScore > firstScore;
 
-  return (
-    <div
-      key={category}
-      className="grid grid-cols-3 gap-4 border-b border-slate-200 px-6 py-5 text-sm last:border-b-0"
-    >
-      <span className="font-semibold text-slate-900">
-        {category}
-      </span>
+            return (
+              <div
+                key={category}
+                className="grid grid-cols-3 gap-4 border-b border-slate-200 px-6 py-5 text-sm last:border-b-0"
+              >
+                <span className="font-semibold text-slate-900">
+                  {category}
+                </span>
 
-      <span
-        className={
-          firstIsHigher
-            ? "font-bold text-blue-700"
-            : "font-semibold text-slate-600"
-        }
-      >
-        {firstScore !== undefined ? `${firstScore}/10` : "N/A"}
-      </span>
+                <span
+                  className={
+                    firstIsHigher
+                      ? "font-bold text-blue-700"
+                      : "font-semibold text-slate-600"
+                  }
+                >
+                  {firstScore !== undefined ? `${firstScore}/10` : "N/A"}
+                </span>
 
-      <span
-        className={
-          secondIsHigher
-            ? "font-bold text-blue-700"
-            : "font-semibold text-slate-600"
-        }
-      >
-        {secondScore !== undefined ? `${secondScore}/10` : "N/A"}
-      </span>
-    </div>
-  );
-})}
+                <span
+                  className={
+                    secondIsHigher
+                      ? "font-bold text-blue-700"
+                      : "font-semibold text-slate-600"
+                  }
+                >
+                  {secondScore !== undefined ? `${secondScore}/10` : "N/A"}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -377,82 +410,86 @@ const overallWinner =
               🏆 Best Overall
             </p>
 
-           {overallWinner ? (
-  <>
-    <p className="mt-2 text-xl font-bold text-slate-900">
-      {overallWinner.name}
-    </p>
+            {overallWinner ? (
+              <>
+                <p className="mt-2 text-xl font-bold text-slate-900">
+                  {overallWinner.name}
+                </p>
 
-  <p className="mt-1 text-slate-600">
-  Overall score:{" "}
-  {overallWinner.scores?.overall ?? overallWinner.rating}/10
-</p>
+                <p className="mt-1 text-slate-600">
+                  Overall score:{" "}
+                  {overallWinner.scores?.overall ?? overallWinner.rating}/10
+                </p>
 
-<p className="mt-2 text-sm font-semibold text-blue-700">
-  Winner by overall score
-</p>
-  </>
-) : (
-  <>
-    <p className="mt-2 text-xl font-bold text-slate-900">
-      It&apos;s a tie
-    </p>
+                <p className="mt-2 text-sm font-semibold text-blue-700">
+                  Winner by overall score
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="mt-2 text-xl font-bold text-slate-900">
+                  It&apos;s a tie
+                </p>
 
-    <p className="mt-1 text-slate-600">
-      Both products have the same overall score.
-    </p>
-  </>
-)}
+                <p className="mt-1 text-slate-600">
+                  Both products have the same overall score.
+                </p>
+              </>
+            )}
           </div>
 
           {/* Category Winners */}
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {categoryScores.map(([category, firstScore, secondScore]) => {
-  const firstValue = firstScore ?? 0;
-  const secondValue = secondScore ?? 0;
+              const firstValue = firstScore ?? 0;
+              const secondValue = secondScore ?? 0;
 
-  const winner =
-    firstValue > secondValue
-      ? firstProduct
-      : secondValue > firstValue
-        ? secondProduct
-        : null;
+              const winner =
+                firstValue > secondValue
+                  ? firstProduct
+                  : secondValue > firstValue
+                    ? secondProduct
+                    : null;
 
- const winningScore = Math.max(Number(firstValue), Number(secondValue));
-  return (
-    <div
-      key={category}
-      className="rounded-2xl border border-slate-200 p-5"
-    >
-      <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-        {category} Winner
-      </p>
+              const winningScore = Math.max(
+                Number(firstValue),
+                Number(secondValue)
+              );
 
-      {winner ? (
-        <>
-          <p className="mt-2 font-bold text-slate-900">
-            {winner.name}
-          </p>
+              return (
+                <div
+                  key={category}
+                  className="rounded-2xl border border-slate-200 p-5"
+                >
+                  <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                    {category} Winner
+                  </p>
 
-        <p className="mt-1 text-sm text-slate-600">
-  {firstProduct.name}: {firstScore}/10 · {secondProduct.name}:{" "}
-  {secondScore}/10
-</p>
-        </>
-      ) : (
-        <>
-          <p className="mt-2 font-bold text-slate-900">
-            It&apos;s a tie
-          </p>
+                  {winner ? (
+                    <>
+                      <p className="mt-2 font-bold text-slate-900">
+                        {winner.name}
+                      </p>
 
-          <p className="mt-1 text-sm text-slate-600">
-            Both products scored {winningScore}/10.
-          </p>
-        </>
-      )}
-    </div>
-  );
-})}
+                      <p className="mt-1 text-sm text-slate-600">
+                        {firstProduct.name}: {firstScore}/10 ·{" "}
+                        {secondProduct.name}: {secondScore}/10
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="mt-2 font-bold text-slate-900">
+                        It&apos;s a tie
+                      </p>
+
+                      <p className="mt-1 text-sm text-slate-600">
+                        Both products scored {winningScore}/10.
+                      </p>
+                    </>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           <p className="mt-8 leading-8 text-slate-600">
@@ -463,64 +500,65 @@ const overallWinner =
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
+            <Link
               href={`/reviews/${firstProduct.slug}`}
               className="rounded-full bg-blue-600 px-6 py-3 text-center font-semibold text-white hover:bg-blue-700"
             >
               Review {firstProduct.name}
-            </a>
+            </Link>
 
-            <a
+            <Link
               href={`/reviews/${secondProduct.slug}`}
               className="rounded-full border border-slate-300 px-6 py-3 text-center font-semibold hover:border-slate-400"
             >
               Review {secondProduct.name}
-            </a>
+            </Link>
           </div>
         </div>
       </section>
 
+      {/* Popular Comparisons */}
       <section className="border-t bg-gray-50">
-  <div className="mx-auto max-w-6xl px-6 py-16">
-    <div className="max-w-3xl">
-      <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">
-        Popular Comparisons
-      </p>
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">
+              Popular Comparisons
+            </p>
 
-      <h2 className="mt-2 text-3xl font-bold tracking-tight">
-        Compare Smart Glasses
-      </h2>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight">
+              Compare Smart Glasses
+            </h2>
 
-      <p className="mt-4 text-lg leading-8 text-gray-600">
-        Compare popular smart glasses side by side to see how they differ in
-        price, AI, cameras, audio, displays, battery life, comfort and value.
-      </p>
-    </div>
+            <p className="mt-4 text-lg leading-8 text-gray-600">
+              Compare popular smart glasses side by side to see how they differ
+              in price, AI, cameras, audio, displays, battery life, comfort and
+              value.
+            </p>
+          </div>
 
-    <div className="mt-10 grid gap-6 md:grid-cols-2">
-      {popularComparisons.map((comparison) => (
-        <Link
-          key={comparison.slug}
-          href={`/compare/${comparison.slug}`}
-          className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-        >
-          <h3 className="text-xl font-bold group-hover:text-blue-600">
-            {comparison.title}
-          </h3>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {popularComparisons.map((comparison) => (
+              <Link
+                key={comparison.slug}
+                href={`/compare/${comparison.slug}`}
+                className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              >
+                <h3 className="text-xl font-bold group-hover:text-blue-600">
+                  {comparison.title}
+                </h3>
 
-          <p className="mt-3 leading-7 text-gray-600">
-            {comparison.description}
-          </p>
+                <p className="mt-3 leading-7 text-gray-600">
+                  {comparison.description}
+                </p>
 
-          <span className="mt-5 inline-block font-semibold text-blue-600">
-            Compare these glasses →
-          </span>
-        </Link>
-      ))}
-    </div>
-  </div>
-</section>
-
+                <span className="mt-5 inline-block font-semibold text-blue-600">
+                  Compare these glasses →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
