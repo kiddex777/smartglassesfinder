@@ -414,10 +414,11 @@ const matchPercentage = winner.score;
   </a>
 
   {winner.product.affiliateUrl && (
-    <a
-      href={winner.product.affiliateUrl}
-      target="_blank"
-      rel="nofollow sponsored noopener"
+  <a
+  href={winner.product.affiliateUrl}
+  target="_blank"
+  rel="nofollow sponsored noopener"
+  data-affiliate="true"
       className="rounded-full border border-slate-300 px-7 py-3 text-center font-semibold text-slate-900 hover:border-slate-400"
     >
       Check Price →

@@ -26,6 +26,44 @@ export default function BestSmartGlassesPage() {
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
+
+       <header className="border-b border-slate-200 bg-white">
+  <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+    <Link href="/" className="text-xl font-bold tracking-tight">
+      SmartGlasses<span className="text-blue-600">Finder</span>
+    </Link>
+
+    <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
+      <Link href="/smart-glasses" className="hover:text-blue-600">
+        Smart Glasses
+      </Link>
+
+      <Link href="/compare" className="hover:text-blue-600">
+        Compare
+      </Link>
+
+      <Link href="/best/smart-glasses" className="text-blue-600">
+        Best
+      </Link>
+
+      <Link href="/reviews" className="hover:text-blue-600">
+        Reviews
+      </Link>
+
+      <Link href="/guides" className="hover:text-blue-600">
+        Guides
+      </Link>
+    </nav>
+
+    <Link
+      href="/find"
+      className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+    >
+      Find Your Glasses
+    </Link>
+  </div>
+</header> 
+
       {/* Hero */}
       <section className="border-b bg-gray-50">
         <div className="mx-auto max-w-6xl px-6 py-16 text-center">

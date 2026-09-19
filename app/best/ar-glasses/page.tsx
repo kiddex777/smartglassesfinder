@@ -30,40 +30,45 @@ export default function BestARGlassesPage() {
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      {/* Hero */}
-      <section className="border-b bg-gray-50">
-        <div className="mx-auto max-w-6xl px-6 py-16 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-blue-600">
-            Smart Glasses Finder
-          </p>
+  {/* Site Header */}
+  <header className="border-b border-slate-200 bg-white">
+    <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+      <Link href="/" className="text-xl font-bold tracking-tight">
+        SmartGlasses<span className="text-blue-600">Finder</span>
+      </Link>
 
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            Best AR Glasses in 2026
-          </h1>
+      <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
+        <Link href="/smart-glasses" className="hover:text-blue-600">
+          Smart Glasses
+        </Link>
 
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
-            Looking for AR glasses with a great virtual display? We compare
-            display quality, resolution, field of view, refresh rate, comfort,
-            audio and value for gaming, movies and productivity.
-          </p>
+        <Link href="/compare" className="hover:text-blue-600">
+          Compare
+        </Link>
 
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link
-              href="/find"
-              className="rounded-xl bg-black px-6 py-3 font-semibold text-white transition hover:bg-gray-800"
-            >
-              Find Your Glasses
-            </Link>
+        <Link href="/best/smart-glasses" className="text-blue-600">
+          Best
+        </Link>
 
-            <Link
-              href="/ar-glasses"
-              className="rounded-xl border border-gray-300 bg-white px-6 py-3 font-semibold transition hover:bg-gray-50"
-            >
-              Explore AR Glasses
-            </Link>
-          </div>
-        </div>
-      </section>
+        <Link href="/reviews" className="hover:text-blue-600">
+          Reviews
+        </Link>
+
+        <Link href="/guides" className="hover:text-blue-600">
+          Guides
+        </Link>
+      </nav>
+
+      <Link
+        href="/find"
+        className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+      >
+        Find Your Glasses
+      </Link>
+    </div>
+  </header>
+
+  {/* Hero */}
 
       {/* Introduction */}
       <section className="mx-auto max-w-6xl px-6 py-14">

@@ -124,16 +124,8 @@ export default async function ComparePage({
     ["Display", firstProduct.display, secondProduct.display],
     ["Battery", firstProduct.battery, secondProduct.battery],
     ["Weight", firstProduct.weight, secondProduct.weight],
-    [
-      "Prescription",
-      firstProduct.prescription,
-      secondProduct.prescription,
-    ],
-    [
-      "Compatibility",
-      firstProduct.compatibility,
-      secondProduct.compatibility,
-    ],
+    ["Prescription", firstProduct.prescription, secondProduct.prescription],
+    ["Compatibility", firstProduct.compatibility, secondProduct.compatibility],
   ];
 
   const categoryScores = [
@@ -149,6 +141,44 @@ export default async function ComparePage({
   return (
     <main className="min-h-screen bg-white text-slate-900">
       {/* Header */}
+      <header className="border-b border-slate-200">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+          <Link href="/" className="text-xl font-bold tracking-tight">
+            SmartGlasses<span className="text-blue-600">Finder</span>
+          </Link>
+
+          <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
+            <Link href="/smart-glasses" className="hover:text-blue-600">
+              Smart Glasses
+            </Link>
+
+            <Link href="/compare" className="text-blue-600">
+              Compare
+            </Link>
+
+            <Link href="/best/smart-glasses" className="hover:text-blue-600">
+              Best
+            </Link>
+
+            <Link href="/reviews" className="hover:text-blue-600">
+              Reviews
+            </Link>
+
+            <Link href="/guides" className="hover:text-blue-600">
+              Guides
+            </Link>
+          </nav>
+
+          <Link
+            href="/find"
+            className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+          >
+            Find Your Glasses
+          </Link>
+        </div>
+      </header>
+
+      {/* Hero */}
       <section className="bg-slate-950 text-white">
         <div className="mx-auto max-w-7xl px-6 py-20 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-blue-400">
@@ -174,7 +204,6 @@ export default async function ComparePage({
           secondSlug={secondSlug}
         />
 
-        {/* Products */}
         <div className="grid gap-6 md:grid-cols-2">
           {/* Product 1 */}
           <div className="overflow-hidden rounded-3xl border border-slate-200">
@@ -404,7 +433,6 @@ export default async function ComparePage({
             Which one should you choose?
           </h2>
 
-          {/* Best Overall */}
           <div className="mt-6 rounded-2xl bg-blue-50 p-5">
             <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">
               🏆 Best Overall
@@ -438,7 +466,6 @@ export default async function ComparePage({
             )}
           </div>
 
-          {/* Category Winners */}
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {categoryScores.map(([category, firstScore, secondScore]) => {
               const firstValue = firstScore ?? 0;

@@ -272,14 +272,15 @@ export default async function ComparisonPage({
                 </Link>
 
                 {product.affiliateUrl && (
-                  <a
-                    href={product.affiliateUrl}
-                    target="_blank"
-                    rel="nofollow sponsored noopener"
-                    className="mt-5 block rounded-xl bg-black px-5 py-3 text-center font-semibold text-white transition hover:bg-gray-800"
-                  >
-                    Check Price →
-                  </a>
+               <a
+  href={product.affiliateUrl}
+  target="_blank"
+  rel="nofollow sponsored noopener"
+  data-affiliate="true"
+  className="mt-5 block rounded-xl bg-black px-5 py-3 text-center font-semibold text-white transition hover:bg-gray-800"
+>
+  Check Price →
+</a>
                 )}
               </div>
             </div>

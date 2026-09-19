@@ -682,9 +682,11 @@ const productSchema = {
         )}
 
         <a
-          href={product.affiliateUrl || product.officialUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        
+  href={product.affiliateUrl || product.officialUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-affiliate={product.affiliateUrl ? "true" : undefined}
           className="inline-block rounded-full bg-blue-600 px-8 py-4 font-semibold text-white transition hover:bg-blue-700"
         >
           Check Current Price →
